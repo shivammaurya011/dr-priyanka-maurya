@@ -1,13 +1,13 @@
 // HomePage.js
 import React from 'react';
 import HeroSection from '../components/Home/HeroSection';
-import Footer from '../components/Footer/Footer';
-import DetailsSection from '../components/Home/DetailsSection';
 import ServiceSection from '../components/Home/ServiceSection';
 import FaqSection from '../components/Home/FaqSection';
 import MassageSection from '../components/Home/MassageSection';
 import ContactSection from '../components/Home/ContactSection';
 import AboutSection from '../components/Home/AboutSection';
+import DoctorsSection from '../components/Home/DoctorsSection';
+import HowItWork from '../components/Home/HowItWork';
 
 function HomePage() {
   return (
@@ -17,9 +17,13 @@ function HomePage() {
       
       <HeroSection />
 
+      {/* Doctors Section */}
+
+      <DoctorsSection/>
+
       {/* Details Section */}
 
-      <DetailsSection />
+      <HowItWork/>
 
       {/* Service Section */}
 

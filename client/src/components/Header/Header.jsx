@@ -1,29 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setScrolled] = useState(false);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <header>
+    <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : ''}`}>
       <nav className="bg-blue-900 border-b lg:border-blue-900 px-6 lg:px-10 py-2">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <Link to="/" className="flex items-center">
-            {/* <img
-              src="https://flowbite.com/docs/images/logo.svg"
-              className="mr-3 h-6 sm:h-9"
-              alt="Flowbite Logo"
-            /> */}
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
             Dr. Priyanka Maurya
             </span>
           </Link>
           <div className="flex items-center lg:order-2">
-          <Link to={'/contact'} className="inline-flex items-center justify-center border-2 px-5 py-3 text-base font-medium text-center text-white border bg-blue-900 border-white rounded-full hover:bg-blue-800 focus:ring-4 focus:ring-gray-100">
+          <Link to={'/contact'} className="inline-flex items-center justify-center border-2 px-5 py-3 text-base font-medium text-center text-white bg-blue-900 border-white rounded-full hover:bg-blue-800 focus:ring-4 focus:ring-gray-100">
           Contact Now
           </Link> 
             <button
